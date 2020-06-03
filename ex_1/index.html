@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example 1</title>
+</head>
+<body>
+<h1>Example 1</h1>
+<h3>Open your dev-tools to see the magic happen.</h3>
+<p>Please execute
+<div><code>npm run example_1:compile</code></div>
+or
+<div><code>npm run example_1:compile:nx</code></div>
+<br/>
+before using this example.
+
+<script>
+  (async () => {
+    const myAgeModule = await WebAssembly.compileStreaming(fetch('./my_age.wasm'));
+    console.log('Module:', myAgeModule);
+
+    //Create an instance of the module.
+    const instanceOfModule = await WebAssembly.instantiate(myAgeModule);
+    console.log('An instance of the Module:', instanceOfModule);
+
+    // Compile & instantiate the module
+    const {instance, module} = await WebAssembly.instantiateStreaming(fetch('./my_age.wasm'));
+    console.log('Module:', module);
+    console.log('Streaming instance of the Module:', instance);
+    console.log('Result the getMyAge-Function:', instance.exports.getMyAge());
+  })();
+</script>
+
+
+</body>
+</html>

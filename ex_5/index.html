@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example 5</title>
+</head>
+<body>
+<h1>Example 5</h1>
+<h3>Open your dev-tools to see the magic happen.</h3>
+<p>Please execute
+<div><code>npm run example_5:compile</code></div>
+or
+<div><code>npm run example_5:compile:nx</code></div>
+<br/>
+before using this example.
+
+<script type="module">
+  import {readString} from "./util.js";
+
+  (async () => {
+    const memory = new WebAssembly.Memory({initial: 256, maximum: 512});
+    const readableBuffer = new Uint8Array(memory.buffer);
+
+    const {instance} = await WebAssembly.instantiateStreaming(fetch('./hello_string.wasm'), {
+      env: {
+        __memory_base: 0,
+        memory
+      }
+    });
+
+    console.log(readableBuffer); // [72, 101, 108, 108, 111,...]
+    const pointer = instance.exports._sayHello(); //points to specific index in the memory-view, e.g. 0
+    console.log(readString(readableBuffer, pointer)); //convert the bytes to a string using a helper function
+  })();
+</script>
+</body>
+</html>

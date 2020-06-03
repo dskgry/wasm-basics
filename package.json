@@ -1,0 +1,35 @@
+{
+  "name": "wasm-basics",
+  "version": "1.0.0",
+  "description": "Basic examples for using wasm",
+  "main": "index.js",
+  "scripts": {
+    "example_1:compile": "docker run -it --rm -v %cd%:/data -w /data jungomi/wabt wat2wasm ./ex_1/my_age.wat -o ./ex_1/my_age.wasm",
+    "example_1:compile:nx": "docker run -it --rm -v $PWD:/data -w /data jungomi/wabt wat2wasm ./ex_1/my_age.wat -o ./ex_1/my_age.wasm",
+    "example_1:run": "ws -d ex_1 -p 3000",
+    "example_2:compile": "docker run -it --rm -v %cd%:/data -w /data jungomi/wabt wat2wasm ./ex_2/sum.wat -o ./ex_2/sum.wasm",
+    "example_2:compile:nx": "docker run -it --rm -v $PWD:/data -w /data jungomi/wabt wat2wasm ./ex_2/sum.wat -o ./ex_2/sum.wasm",
+    "example_2:run": "ws -d ex_2 -p 3000",
+    "example_3:compile": "docker run --rm -v %cd%:/data -it trzeci/emscripten emcc -g /data/ex_3/check_primes.c -s SIDE_MODULE=1 -Oz -s EXPORTED_FUNCTIONS=['_checkPrimes'] -o /data/ex_3/check_primes.wasm",
+    "example_3:compile:nx": "docker run --rm -v $PWD:/data -it trzeci/emscripten emcc -g /data/ex_3/check_primes.c -s SIDE_MODULE=1 -Oz -s EXPORTED_FUNCTIONS=['_checkPrimes'] -o /data/ex_3/check_primes.wasm",
+    "example_3:run": "ws -d ex_3 -p 3000",
+    "example_4:compile": "docker run --rm -v %cd%:/data -it trzeci/emscripten emcc -g /data/ex_4/check_primes_and_log.c -s SIDE_MODULE=1 -Oz -s EXPORTED_FUNCTIONS=['_checkPrimes'] -o /data/ex_4/check_primes_and_log.wasm",
+    "example_4:compile:nx": "docker run --rm -v $PWD:/data -it trzeci/emscripten emcc -g /data/ex_4/check_primes_and_log.c -s SIDE_MODULE=1 -Oz -s EXPORTED_FUNCTIONS=['_checkPrimes'] -o /data/ex_4/check_primes_and_log.wasm",
+    "example_4:run": "ws -d ex_4 -p 3000",
+    "example_5:compile": "docker run --rm -v %cd%:/data -it trzeci/emscripten emcc -g /data/ex_5/hello_string.c -s SIDE_MODULE=1 -Oz -s EXPORTED_FUNCTIONS=['_sayHello'] -o /data/ex_5/hello_string.wasm",
+    "example_5:compile:nx": "docker run --rm -v $PWD:/data -it trzeci/emscripten emcc -g /data/ex_5/hello_string.c -s SIDE_MODULE=1 -Oz -s EXPORTED_FUNCTIONS=['_sayHello'] -o /data/ex_5/hello_string.wasm",
+    "example_5:run": "ws -d ex_5 -p 3000",
+    "example_6:compile": "docker run --rm -v %cd%:/data -it trzeci/emscripten emcc -g /data/ex_6/hello_string.c -s -Oz -s EXPORTED_FUNCTIONS=['_sayHello'] -o /data/ex_6/hello_string_glue.js",
+    "example_6:compile:nx": "docker run --rm -v $PWD:/data -it trzeci/emscripten emcc -g /data/ex_6/hello_string.c -s -Oz -s EXPORTED_FUNCTIONS=['_sayHello'] -o /data/ex_6/hello_string_glue.js",
+    "example_6:run": "ws -d ex_6 -p 3000"
+  },
+  "keywords": [
+    "WASM"
+  ],
+  "author": "Sven Koelpin",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^0.12.3",
+    "local-web-server": "^4.2.0"
+  }
+}

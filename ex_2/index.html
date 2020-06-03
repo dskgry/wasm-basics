@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example 2</title>
+</head>
+<body>
+<h1>Example 2</h1>
+<h3>Open your dev-tools to see the magic happen.</h3>
+<p>Please execute
+<div><code>npm run example_2:compile</code></div>
+or
+<div><code>npm run example_2:compile:nx</code></div>
+<br/>
+before using this example.
+
+<script>
+  (async () => {
+    const {instance} = await WebAssembly.instantiateStreaming(fetch('./sum.wasm'), {
+      env: {
+        //env-object contains all imports
+        log: () => console.log('HI FROM IMPORTED FUNCTION!!!')
+      }
+    });
+    console.log(instance.exports.sum(40, 2)); //prints HI FROM IMPORTED FUNCTION!!! 42
+  })();
+</script>
+
+
+</body>
+</html>

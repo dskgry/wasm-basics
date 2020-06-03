@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example 3</title>
+</head>
+<body>
+<h1>Example 3</h1>
+<h3>Open your dev-tools to see the magic happen.</h3>
+<p>Please execute
+<div><code>npm run example_3:compile</code></div>
+or
+<div><code>npm run example_3:compile:nx</code></div>
+<br/>
+before using this example.
+
+<script>
+  (async () => {
+    const {instance} = await WebAssembly.instantiateStreaming(fetch('./check_primes.wasm'), {
+      env: {
+        __memory_base: 0
+      }
+    });
+    console.log(instance.exports._checkPrimes(123));
+  })();
+</script>
+
+
+</body>
+</html>

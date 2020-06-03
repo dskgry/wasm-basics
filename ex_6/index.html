@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example 6</title>
+</head>
+<body>
+<h1>Example 6</h1>
+<h3>Open your dev-tools to see the magic happen.</h3>
+<p>Please execute
+<div><code>npm run example_6:compile</code></div>
+or
+<div><code>npm run example_6:compile:nx</code></div>
+<br/>
+before using this example.
+
+<script src="./hello_string_glue.js"></script>
+<script>
+  Module.onRuntimeInitialized = () => {
+    //wrap the function. Second parameter defines the return value
+    const sayHello = cwrap('sayHello', 'string');
+    console.log(sayHello());
+  };
+</script>
+</body>
+</html>
