@@ -29,6 +29,6 @@
   "author": "Sven Koelpin",
   "license": "MIT",
   "dependencies": {
-    "local-web-server": "^4.2.0"
+    "local-web-server": "^5.3.0"
   }
 }
